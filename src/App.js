@@ -10,7 +10,18 @@ import Products from './Pages/Products';
 import Uploads from './Pages/uploadProducts';
 import C_orders from './Pages/C_orders';
 
+// import { createStore, applyMiddleware } from "redux";
+// import { Provider } from "react-redux";
+// import thunk from "redux-thunk";
+
+// import rootReducer from "./redux/reducers";
+
+
+
 function App() {
+
+
+
   return (
     <>
       <Router>

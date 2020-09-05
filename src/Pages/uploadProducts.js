@@ -21,12 +21,12 @@ function Uploads() {
       <input type="file" className="" onChange={fileSelectoedHandler} />
       <br /><br /><br /><br />
       <div className="form-group col-md-6">
-        <label For="productName" className="font-weight-bold">Product Name</label>
+        <label htmlFor="productName" className="font-weight-bold">Product Name</label>
         <input type="text" className="form-control" id="productName" />
       </div>
       <br />
       <div className="form-group col-md-6">
-        <label For="description" className="font-weight-bold">Description</label>
+        <label htmlFor="description" className="font-weight-bold">Description</label>
         <CKEditor
           editor={ClassicEditor}
           data="<p>Hello from CKEditor 5!</p>"

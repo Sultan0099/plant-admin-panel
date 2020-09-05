@@ -14,7 +14,6 @@ export const SidebarData = [
     title: 'Orders',
     path: '/orders',
     icon: <FaIcons.FaLuggageCart/>,
-    // icon: <FaIcons.FaCartPlus />,
     cName: 'nav-text'
   },
   {

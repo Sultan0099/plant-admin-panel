@@ -22,20 +22,6 @@ function Category() {
                   <p className="card-text">
                   Lorem Ipsum is simply dummy text of the printing and typesetting industry.             
                   </p>
-                  {/* <div className="options d-flex flex-fill">
-                    <select className="custom-select mr-1">
-                      <option selected>Color</option>
-                      <option value="1">Green</option>
-                      <option value="2">Blue</option>
-                      <option value="3">Red</option>
-                    </select>
-                    <select className="custom-select ml-1">
-                      <option selected>Size</option>
-                      <option value="1">41</option>
-                      <option value="2">42</option>
-                      <option value="3">43</option>
-                    </select>
-                  </div> */}
                   <div className="buy d-flex justify-content-between align-items-center">
                     <div className="price text-success"><h5 className="mt-4">$125</h5></div>
                     <Link to="#" className="btn btn-success mt-3">
