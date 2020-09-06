@@ -1,5 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './App.css';
+
+import { useDispatch } from 'react-redux';
+
 import Navbar from './Components/Nav_Sidebar/Navbar';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Login from './Pages/Login';
@@ -9,17 +12,24 @@ import Orders from './Pages/Orders';
 import Products from './Pages/Products';
 import Uploads from './Pages/uploadProducts';
 import C_orders from './Pages/C_orders';
+import EditProduct from './Pages/EditProduct';
 
-// import { createStore, applyMiddleware } from "redux";
-// import { Provider } from "react-redux";
-// import thunk from "redux-thunk";
-
-// import rootReducer from "./redux/reducers";
-
+import { getUserWithToken } from "./redux/actions/auth";
 
 
 function App() {
 
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const res = dispatch(getUserWithToken());
+
+    if (res.err) {
+      localStorage.removeItem("token");
+      window.location = "/login"
+    }
+
+  }, [])
 
 
   return (
@@ -30,13 +40,14 @@ function App() {
           <div className="main_container_2">
             <div className="item">
               <Switch>
-                <Route path='/' exact component={Login} />
+                <Route path='/login' exact component={Login} />
                 <Route path='/signup' exact component={SignUp} />
-                <Route path='/dashboard' exact component={Dashboard} />
+                <Route path='/' exact component={Dashboard} />
                 <Route path='/orders' component={Orders} />
                 <Route path='/products' component={Products} />
                 <Route path='/uploads' component={Uploads} />
                 <Route path='/c_orders' component={C_orders} />
+                <Route path="/edit-product/:productId" component={EditProduct} />
               </Switch>
             </div>
           </div>

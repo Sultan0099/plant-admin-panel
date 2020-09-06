@@ -9,7 +9,7 @@ import './Navbar.css';
 
 function Sidebar() {
 
-  
+
 
   return (
     <div>
@@ -21,11 +21,11 @@ function Sidebar() {
           </div>
           <div className="top_menu">
             <div className="logo">
-              <img  src={icon}/>
+              <img src={icon} />
             </div>
             <ul>
               <li>
-                <Link to="/">
+                <Link to="/login">
                   <FaIcons.FaUser />
                 </Link>
               </li>
@@ -38,29 +38,29 @@ function Sidebar() {
 
       <div className="sidebar">
         <ul>
-            {/* At Mobile View */}
-            {SidebarData.map((item, index) => {
-              return (
-                <li key={index} className="icon">
-                  <Link to={item.path}>
-                    <span className="icon">{item.icon}</span>
-                  </Link>
-                </li>
-              )
-            })}
+          {/* At Mobile View */}
+          {SidebarData.map((item, index) => {
+            return (
+              <li key={index} className="icon">
+                <Link to={item.path}>
+                  <span className="icon">{item.icon}</span>
+                </Link>
+              </li>
+            )
+          })}
 
-            {/* At Laptop or Desktop View */}
-            
-            {SidebarData.map((item, index) => {
-              return (
-                <li key={index} className="title">
-                  <Link to={item.path}>
-                    <span className="icon">{item.icon}</span>
-                    <span>{item.title}</span>
-                  </Link>
-                </li>
-              )
-            })}
+          {/* At Laptop or Desktop View */}
+
+          {SidebarData.map((item, index) => {
+            return (
+              <li key={index} className="title">
+                <Link to={item.path}>
+                  <span className="icon">{item.icon}</span>
+                  <span>{item.title}</span>
+                </Link>
+              </li>
+            )
+          })}
         </ul>
       </div>
     </div>

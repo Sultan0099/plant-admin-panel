@@ -1,39 +1,48 @@
-import React from 'react';
-import {Link} from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+
+import ProductCard from "../Components/ProductsCard";
+import { useDispatch, useSelector } from 'react-redux';
+import { getUserProducts } from '../redux/actions/products';
+
 
 function Category() {
+
+  const [loading, setLoading] = useState(true);
+
+  const dispatch = useDispatch();
+  const products = useSelector(state => state.products.products)
+
+
+  const fetchProducts = async () => {
+    await dispatch(getUserProducts());
+    setLoading(false);
+  }
+
+  useEffect(() => {
+    fetchProducts();
+  }, [])
+
+
+  if (loading) return <p> your products are loading ..... </p>
+
+
   return (
     <div className='category'>
-      <h1 className = "font-weight-bolder">Products</h1>
-
-      <div className="container">
+      <h1 className="font-weight-bolder">Products</h1>
+      <div className="container" style={{ overflowY: 'scroll', height: '76vh' }}>
         <div className="row">
-          <div className="col-12 col-sm-8 col-md-6 col-lg-4">
-            <div className="card">
-              <img className="card-img" src="https://www.anchoragehopeisland.com.au/wp-content/uploads/2018/10/Costa-Farms-Snake-Plant-Header-Image.jpg" alt="Vans"/>
-                <div className="card-img-overlay d-flex justify-content-end">
-                  <Link to="#"  className="card-link text-danger like">
-                    <i className="fas fa-heart"></i>
-                  </Link>
-                </div>
-                <div className="card-body">
-                  <h4 className="card-title"> Costa Snake Plant</h4>
-                  <h6 className="card-subtitle mb-2 text-muted">Style: VA33TXRJ5</h6>
-                  <p className="card-text">
-                  Lorem Ipsum is simply dummy text of the printing and typesetting industry.             
-                  </p>
-                  <div className="buy d-flex justify-content-between align-items-center">
-                    <div className="price text-success"><h5 className="mt-4">$125</h5></div>
-                    <Link to="#" className="btn btn-success mt-3">
-                       Edit
-                    </Link>
-                    <Link to="#" className="btn btn-danger mt-3">
-                       Delete
-                    </Link>
-                  </div>
-                </div>
+          {products.map(product => (
+            <div className="col-12 col-sm-8 col-md-6 col-lg-4" key={product._id}>
+              <ProductCard
+                productId={product._id}
+                name={product.name}
+                price={product.price}
+                imgs={product.productPic}
+                description={product.description}
+                stock={product.stock}
+              />
             </div>
-          </div>
+          ))}
         </div>
       </div>
     </div>
