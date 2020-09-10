@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 
 import { useDispatch } from 'react-redux';
@@ -20,6 +20,7 @@ import { getUserWithToken } from "./redux/actions/auth";
 function App() {
 
   const dispatch = useDispatch();
+  const [token, setToken] = useState(localStorage.getItem('token'))
 
   useEffect(() => {
     const res = dispatch(getUserWithToken());
@@ -27,6 +28,9 @@ function App() {
     if (res.err) {
       localStorage.removeItem("token");
       window.location = "/login"
+      console.log("runs")
+    } else {
+      console.log(res.token)
     }
 
   }, [])
@@ -42,12 +46,15 @@ function App() {
               <Switch>
                 <Route path='/login' exact component={Login} />
                 <Route path='/signup' exact component={SignUp} />
-                <Route path='/' exact component={Dashboard} />
-                <Route path='/orders' component={Orders} />
-                <Route path='/products' component={Products} />
-                <Route path='/uploads' component={Uploads} />
-                <Route path='/c_orders' component={C_orders} />
-                <Route path="/edit-product/:productId" component={EditProduct} />
+
+                <>
+                  <Route path='/dashboard' exact component={Dashboard} />
+                  <Route path='/orders' component={Orders} />
+                  <Route path='/products' component={Products} />
+                  <Route path='/uploads' component={Uploads} />
+                  <Route path='/c_orders' component={C_orders} />
+                  <Route path="/edit-product/:productId" component={EditProduct} />
+                </>
               </Switch>
             </div>
           </div>

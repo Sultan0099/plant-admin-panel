@@ -25,10 +25,10 @@ export default (props) => {
 
     return (
         <div className="card mt-2">
-            {/* <div className="card-img" style={{ height: '50%', overflowY: 'hidden' }}>
+            <div className="card-img" style={{ height: '50%', overflowY: 'hidden' }}>
                 <ProductCardCarousel images={imgs} />
-            </div> */}
-            <img src={imgs[0].path} alt={imgs[0].path} />
+            </div>
+            {/* <img src={imgs[0].path} alt={imgs[0].path} /> */}
             <div className="card-body">
                 <h4 className="card-title"> {name} </h4>
                 <p className="card-text">

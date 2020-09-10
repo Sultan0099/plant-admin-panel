@@ -9,7 +9,7 @@ export default function ProductCardCarousel(props) {
         <div>
             <Carousel controls={false} touch={true}>
                 {props.images.map(image => (
-                    <Carousel.Item>
+                    <Carousel.Item key={image._id}>
                         <img
                             className="d-block w-100"
                             src={image.path}

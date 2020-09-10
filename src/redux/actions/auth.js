@@ -62,7 +62,7 @@ export const getUserWithToken = () => async dispatch => {
 
     await dispatch({ type: SET_USER, payload: { user: res.data.user, token: res.data.token } })
 
-    return { err: false }
+    return { err: false, token: res.data.token }
 
 
   } catch (err) {

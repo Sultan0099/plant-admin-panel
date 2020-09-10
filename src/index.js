@@ -4,10 +4,10 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
-import { createStore, applyMiddleware ,compose } from "redux";
+import { createStore, applyMiddleware, compose } from "redux";
 import { Provider } from "react-redux";
 import thunk from "redux-thunk";
-  
+
 
 import rootReducer from "./redux/reducers";
 
@@ -20,10 +20,7 @@ const store = createStore(
 
 ReactDOM.render(
   <Provider store={store}>
-    <React.StrictMode>
-      <App />
-
-    </React.StrictMode>
+    <App />
   </Provider>
   ,
   document.getElementById('root')

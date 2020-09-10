@@ -18,7 +18,8 @@ function EditProducts() {
         name: '',
         description: '',
         price: '',
-        stock: ''
+        stock: '',
+        category: ''
     });
     const [submitting, setSubmitting] = useState(false);
     const [msg, showMsg] = useState(false);
@@ -31,11 +32,10 @@ function EditProducts() {
             if (data.err) {
                 setLoading(false)
             } else {
-                const { name, description, stock, price, productPic } = data.res.data.product;
-
+                const { name, description, stock, price, productPic, category } = data.res.data.product;
                 setValues({
                     ...values,
-                    name, description, stock, price
+                    name, description, stock, price, category
                 })
                 setImages(productPic)
                 setLoading(false)
@@ -52,7 +52,7 @@ function EditProducts() {
     }, [])
 
 
-    const fileUpLoadHandler = useCallback(async (e) => {
+    const fileUpLoadHandler = async (e) => {
         try {
             e.stopPropagation();
             e.preventDefault();
@@ -82,7 +82,7 @@ function EditProducts() {
         } catch (error) {
             console.log(error)
         }
-    })
+    }
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -108,7 +108,7 @@ function EditProducts() {
             return
         }
 
-        if (values.name == "" || values.description == "", values.stock == "", values.price == "") {
+        if (values.name === "" || values.description === "" || values.stock === "" || values.price === "") {
             setErrors([
                 ...errors,
                 "please fill all fields"
@@ -158,6 +158,17 @@ function EditProducts() {
             <div className="form-group col-md-6">
                 <label htmlFor="stock" className="font-weight-bold">Stock</label>
                 <input type="number" name="stock" className="form-control " id="stock" name="stock" value={values.stock} onChange={handleChange} />
+            </div>
+            <div className="form-group col-md-6">
+                <label htmlFor="category" className="font-weight-bold">Category</label>
+                <select className="form-control" id="category" name="category" onChange={handleChange} value={values.category} >
+                    <option value="seeds">seeds</option>
+                    <option value="sprayers">sprayers</option>
+                    <option value="fertilizers">fertilizers</option>
+                    <option value="plants">plants</option>
+                    <option value="pots">pots</option>
+                    <option value="flowers">flowers</option>
+                </select>
             </div>
             <br /><br />
             <button onClick={handleSubmit} disabled={submitting} type="button" className="btn btn-success">
