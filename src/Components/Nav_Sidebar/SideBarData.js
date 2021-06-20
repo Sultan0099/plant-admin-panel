@@ -17,12 +17,6 @@ export const SidebarData = [
     cName: 'nav-text'
   },
   {
-    title: 'Cancel Orders',
-    path: '/c_orders',
-    icon: <IoIcons.IoMdPeople />,
-    cName: 'nav-text'
-  },
-  {
     title: 'Upload_products',
     path: '/uploads',
     icon: <FaIcons.FaUpload />,

@@ -27,27 +27,35 @@ function Uploads() {
       e.stopPropagation();
       e.preventDefault();
       if (
-        e.currentTarget &&
-        e.currentTarget.files &&
-        e.currentTarget.files.length > 0
+        e.target &&
+        e.target.files &&
+        e.target.files.length > 0
       ) {
         setImgLoading(true);
-        const files = e.currentTarget.files;
-        let formData = new FormData();
-        for (let file of files) {
-          formData.append("product-img", file);
-        }
-        const data = await uploadPics(formData);
+        const files = e.target.files;
+        // let formData = new FormData();
+        // for (let file of files) {
+        //   formData.append("product-img", file);
+        // }
 
-        if (data.err) {
-          setErrors([...errors, data.error]);
-          setImgLoading(false)
-          return
-        } else {
-          setImages(data.res.data.images);
-          setImgLoading(false);
+        console.log(files[0])
 
+        let reader = new FileReader();
+        reader.readAsDataURL(files[0])
+        reader.onloadend = async () => {
+          const data = await uploadPics(reader.result);
+
+          if (data.err) {
+            setErrors([...errors, data.error]);
+            setImgLoading(false)
+            return
+          } else {
+            setImages(data.res.data.images || []);
+            setImgLoading(false);
+
+          }
         }
+        
       }
     } catch (error) {
       console.log(error)
@@ -105,11 +113,11 @@ function Uploads() {
 
       <h1 className="font-weight-bolder">Upload Products</h1>
       <br /><br />
-      <input type="file" className="" multiple accept="image/*" onChange={fileUpLoadHandler} />
+      <input type="file" className=""  accept="image/*" onChange={fileUpLoadHandler} />
       {imgLoading && <p> images are uploading please wait ... </p>}
 
       <div className="mt-2">
-        {images.map(img => (
+        {images.length > 0 && images.map(img => (
           <div style={{ width: 400 }} className="d-inline ml-1" key={img._id}>
             <img src={img.path} alt={img.originalName} />
           </div>

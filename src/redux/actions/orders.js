@@ -5,7 +5,7 @@ import { SET_ORDERS, UPDATE_STATUS } from "../_actionsTypes"
 export const getOrders = (userId) => async dispatch => {
     try {
         const token = localStorage.getItem('token');
-        const res = await axios.get(`http://localhost:2019/order/get-orders/seller/${userId}`, {
+        const res = await axios.get(`https://glacial-bayou-56103.herokuapp.com/order/get-orders/seller/${userId}`, {
             headers: {
                 authorization: `Bearer ${token}`
             }
@@ -22,7 +22,7 @@ export const getOrders = (userId) => async dispatch => {
 export const updateStatus = (orderId, status) => async dispatch => {
     try {
         const token = localStorage.getItem('token');
-        const res = await axios.patch(`http://localhost:2019/order/update-status/${orderId}/${status}`, {}, {
+        const res = await axios.patch(`https://glacial-bayou-56103.herokuapp.com/order/update-status/${orderId}/${status}`, {}, {
             headers: {
                 authorization: `Bearer ${token}`
             }

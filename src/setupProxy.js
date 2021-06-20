@@ -3,7 +3,7 @@ module.exports = function(app) {
   app.use(
     '/api',
     createProxyMiddleware({
-      target: 'http://localhost:2019',
+      target: 'https://glacial-bayou-56103.herokuapp.com/',
       changeOrigin: true,
     })
   );

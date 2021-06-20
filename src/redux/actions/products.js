@@ -5,7 +5,7 @@ import { SET_PRODUCTS, CREATE_PRODUCT, DELETE_PRODUCT } from "../_actionsTypes";
 export const getUserProducts = () => async dispatch => {
     try {
         const token = localStorage.getItem("token");
-        const res = await axios.get("http://localhost:2019/products/me", {
+        const res = await axios.get("https://glacial-bayou-56103.herokuapp.com/products/me", {
             headers: {
                 authorization: `Bearer ${token}`
             }
@@ -24,7 +24,7 @@ export const getUserProducts = () => async dispatch => {
 export const uploadPics = async (imagesData) => {
     try {
         const token = localStorage.getItem("token");
-        const res = await axios.post('http://localhost:2019/products/upload-img', imagesData, {
+        const res = await axios.post('https://glacial-bayou-56103.herokuapp.com/products/upload-img', {data: imagesData}, {
             headers: {
                 authorization: `Bearer ${token}`
             }
@@ -40,7 +40,7 @@ export const uploadPics = async (imagesData) => {
 export const createProducts = (productsData) => async dispatch => {
     try {
         const token = localStorage.getItem('token');
-        const res = await axios.post('http://localhost:2019/products/create', productsData, {
+        const res = await axios.post('https://glacial-bayou-56103.herokuapp.com/products/create', productsData, {
             headers: {
                 authorization: `Bearer ${token}`
             }
@@ -56,7 +56,7 @@ export const createProducts = (productsData) => async dispatch => {
 export const singleProduct = async (productId) => {
     try {
         const token = localStorage.getItem("token");
-        const res = await axios.get(`http://localhost:2019/products/single-product/${productId}`, {
+        const res = await axios.get(`https://glacial-bayou-56103.herokuapp.com/products/single-product/${productId}`, {
             headers: {
                 authorization: `Bearer ${token}`
             }
@@ -75,7 +75,7 @@ export const singleProduct = async (productId) => {
 export const editProduct = (productId, productData) => async dispatch => {
     try {
         const token = localStorage.getItem('token');
-        const res = await axios.patch(`http://localhost:2019/products/edit`, { productId, product: productData }, {
+        const res = await axios.patch(`https://glacial-bayou-56103.herokuapp.com/products/edit`, { productId, product: productData }, {
             headers: {
                 authorization: `Bearer ${token}`
             }
@@ -91,7 +91,7 @@ export const editProduct = (productId, productData) => async dispatch => {
 export const deleteProduct = (productId) => async dispatch => {
     try {
         const token = localStorage.getItem('token');
-        const res = await axios.delete(`http://localhost:2019/products/remove/${productId}`, {
+        const res = await axios.delete(`https://glacial-bayou-56103.herokuapp.com/products/remove/${productId}`, {
             headers: {
                 authorization: `Bearer ${token}`
             }
